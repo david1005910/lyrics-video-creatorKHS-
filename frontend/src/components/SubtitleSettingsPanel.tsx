@@ -36,29 +36,31 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
   ];
 
   return (
-    <div className="bg-slate-900 rounded-lg border border-slate-800 animate-fade-in">
-      <div className="p-6 border-b border-slate-800">
-        <div className="flex items-center mb-4">
-          <Settings className="h-5 w-5 text-primary mr-2" />
-          <h2 className="text-xl font-semibold text-white">Subtitle Settings</h2>
+    <div className="glass-card rounded-softer float-3d animate-fade-in">
+      <div className="p-6 border-b border-white/20">
+        <div className="flex items-center mb-2">
+          <div className="p-1.5 rounded-lg bg-gradient-button mr-2 shadow-glow-secondary">
+            <Settings className="h-4 w-4 text-white" />
+          </div>
+          <h2 className="text-xl font-semibold text-slate-700">Subtitle Settings</h2>
         </div>
       </div>
 
       <div className="p-6 space-y-8">
         {/* Font Settings */}
         <div className="space-y-4">
-          <h3 className="text-md font-medium text-white flex items-center">
-            <Type className="h-4 w-4 mr-2 text-primary" />
+          <h3 className="text-md font-medium text-slate-700 flex items-center">
+            <Type className="h-4 w-4 mr-2 text-secondary" />
             Font Settings
           </h3>
 
           <div className="space-y-3">
             <div>
-              <label className="text-sm text-slate-400">Japanese Font</label>
+              <label className="text-sm text-slate-500">Japanese Font</label>
               <select
                 value={settings.fontFamilyJa}
                 onChange={(e) => onChange({ fontFamilyJa: e.target.value })}
-                className="w-full mt-1 bg-slate-800 border border-slate-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input-soft w-full mt-1 px-3 py-2 text-slate-700 rounded-xl focus:ring-2 focus:ring-primary/30"
               >
                 {japaneseFonts.map((font) => (
                   <option key={font} value={font}>{font}</option>
@@ -67,11 +69,11 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
             </div>
 
             <div>
-              <label className="text-sm text-slate-400">English Font</label>
+              <label className="text-sm text-slate-500">English Font</label>
               <select
                 value={settings.fontFamilyEn}
                 onChange={(e) => onChange({ fontFamilyEn: e.target.value })}
-                className="w-full mt-1 bg-slate-800 border border-slate-700 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="input-soft w-full mt-1 px-3 py-2 text-slate-700 rounded-xl focus:ring-2 focus:ring-primary/30"
               >
                 {englishFonts.map((font) => (
                   <option key={font} value={font}>{font}</option>
@@ -80,7 +82,7 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
             </div>
 
             <div>
-              <label className="text-sm text-slate-400">Font Size: {settings.fontSize}px</label>
+              <label className="text-sm text-slate-500">Font Size: {settings.fontSize}px</label>
               <Slider
                 value={[settings.fontSize]}
                 min={16}
@@ -91,7 +93,7 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
             </div>
 
             <div>
-              <label className="text-sm text-slate-400">Outline Size: {settings.outlineSize}px</label>
+              <label className="text-sm text-slate-500">Outline Size: {settings.outlineSize}px</label>
               <Slider
                 value={[settings.outlineSize]}
                 min={0}
@@ -105,17 +107,17 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
 
         {/* Color Settings */}
         <div className="space-y-4">
-          <h3 className="text-md font-medium text-white flex items-center">
-            <Palette className="h-4 w-4 mr-2 text-primary" />
+          <h3 className="text-md font-medium text-slate-700 flex items-center">
+            <Palette className="h-4 w-4 mr-2 text-accent" />
             Color Settings
           </h3>
 
           <div className="space-y-4">
             <div>
-              <label className="text-sm text-slate-400 block mb-2">Text Color</label>
+              <label className="text-sm text-slate-500 block mb-2">Text Color</label>
               <div className="flex items-center space-x-3">
                 <div
-                  className="w-10 h-10 rounded-md border border-slate-600"
+                  className="w-10 h-10 rounded-xl border border-white/40 shadow-soft"
                   style={{ backgroundColor: settings.color }}
                 />
                 <HexColorPicker
@@ -127,10 +129,10 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
             </div>
 
             <div>
-              <label className="text-sm text-slate-400 block mb-2">Outline Color</label>
+              <label className="text-sm text-slate-500 block mb-2">Outline Color</label>
               <div className="flex items-center space-x-3">
                 <div
-                  className="w-10 h-10 rounded-md border border-slate-600"
+                  className="w-10 h-10 rounded-xl border border-white/40 shadow-soft"
                   style={{ backgroundColor: settings.outlineColor }}
                 />
                 <HexColorPicker
@@ -145,14 +147,14 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
 
         {/* Layout Settings */}
         <div className="space-y-4">
-          <h3 className="text-md font-medium text-white flex items-center">
-            <Square className="h-4 w-4 mr-2 text-primary" />
+          <h3 className="text-md font-medium text-slate-700 flex items-center">
+            <Square className="h-4 w-4 mr-2 text-pink-soft" />
             Layout and Effects
           </h3>
 
           <div className="space-y-3">
             <div>
-              <label className="text-sm text-slate-400">Bottom Margin: {settings.bottomMargin}px</label>
+              <label className="text-sm text-slate-500">Bottom Margin: {settings.bottomMargin}px</label>
               <Slider
                 value={[settings.bottomMargin]}
                 min={0}
@@ -163,7 +165,7 @@ export const SubtitleSettingsPanel: React.FC<SubtitleSettingsPanelProps> = ({
             </div>
 
             <div className="flex items-center justify-between">
-              <label className="text-sm text-slate-400">Enable Fade In/Out</label>
+              <label className="text-sm text-slate-500">Enable Fade In/Out</label>
               <Switch
                 checked={settings.enableFade}
                 onCheckedChange={(checked) => onChange({ enableFade: checked })}

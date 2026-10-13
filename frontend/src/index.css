@@ -3,17 +3,84 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: 59 130 246;
-  --color-secondary: 99 102 241;
-  --color-accent: 244 114 182;
-  --color-background: 15 23 42;
-  --color-foreground: 248 250 252;
+  --color-primary: 126 200 255;
+  --color-secondary: 184 164 240;
+  --color-accent: 140 232 208;
+  --color-pink: 255 184 212;
+  --color-peach: 255 228 212;
 }
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-50 antialiased;
+    @apply text-slate-700 antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: linear-gradient(135deg, #FFD4E5 0%, #D4E4FF 30%, #FFE4D4 60%, #E4D4FF 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glassmorphic card style */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Floating 3D effect */
+  .float-3d {
+    transform: perspective(1000px) rotateX(2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .float-3d:hover {
+    transform: perspective(1000px) rotateX(0deg) translateY(-4px);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Gradient button */
+  .btn-gradient {
+    background: linear-gradient(135deg, #7EC8FF 0%, #B8A4F0 50%, #8CE8D0 100%);
+    box-shadow: 0 4px 16px rgba(126, 200, 255, 0.35);
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    box-shadow: 0 6px 24px rgba(126, 200, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-gradient:disabled {
+    background: linear-gradient(135deg, #CBD5E1 0%, #E2E8F0 100%);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  /* Glowing accent strip */
+  .glow-accent {
+    box-shadow: 0 0 8px #7EC8FF, 0 0 16px rgba(126, 200, 255, 0.3);
+  }
+
+  /* Soft input style */
+  .input-soft {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(184, 164, 240, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .input-soft:focus {
+    border-color: rgba(126, 200, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(126, 200, 255, 0.15);
+    outline: none;
   }
 }
 
@@ -25,5 +92,23 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Ambient radial overlay */
+  .ambient-glow {
+    position: relative;
+  }
+
+  .ambient-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(126, 200, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
   }
 }

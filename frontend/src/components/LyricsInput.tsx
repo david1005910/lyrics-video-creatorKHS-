@@ -12,13 +12,15 @@ export const LyricsInput: React.FC<LyricsInputProps> = ({ value, onChange }) => 
   };
 
   return (
-    <div className="bg-slate-900 rounded-lg p-6 border border-slate-800 animate-fade-in">
+    <div className="glass-card rounded-softer p-6 float-3d animate-fade-in">
       <div className="flex items-center mb-4">
-        <AlignCenter className="h-5 w-5 text-primary mr-2" />
-        <h2 className="text-xl font-semibold text-white">Lyrics</h2>
+        <div className="p-1.5 rounded-lg bg-gradient-button mr-2 shadow-glow-accent">
+          <AlignCenter className="h-4 w-4 text-white" />
+        </div>
+        <h2 className="text-xl font-semibold text-slate-700">Lyrics</h2>
       </div>
 
-      <p className="text-sm text-slate-400 mb-4">
+      <p className="text-sm text-slate-500 mb-4">
         Enter lyrics here. Each line will be displayed as one subtitle line.
       </p>
 
@@ -27,12 +29,12 @@ export const LyricsInput: React.FC<LyricsInputProps> = ({ value, onChange }) => 
           value={value}
           onChange={handleChange}
           placeholder="Enter lyrics here..."
-          className="w-full h-64 px-4 py-3 bg-slate-800 text-slate-200 rounded-md border border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+          className="input-soft w-full h-64 px-4 py-3 text-slate-700 rounded-xl resize-none focus:ring-2 focus:ring-primary/30"
         />
       </div>
 
-      <div className="mt-2 flex justify-end">
-        <div className="text-xs text-slate-500">
+      <div className="mt-3 flex justify-end">
+        <div className="px-3 py-1 rounded-full glass-card text-xs text-slate-500">
           {value.split('\n').length} lines
         </div>
       </div>

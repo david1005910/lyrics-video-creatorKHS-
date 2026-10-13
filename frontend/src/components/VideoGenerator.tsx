@@ -71,7 +71,7 @@ export const VideoGenerator: React.FC = () => {
     formData.append('lyrics', state.lyrics);
     formData.append('font_size', state.settings.fontSize.toString());
     formData.append('font_color', state.settings.color);
-    formData.append('font_name_ja', state.settings.fontFamilyJa); // As per current API spec, these are not included
+    formData.append('font_name_ja', state.settings.fontFamilyJa);
     formData.append('font_name_en', state.settings.fontFamilyEn);
     formData.append('outline_color', state.settings.outlineColor);
     formData.append('outline_size', state.settings.outlineSize.toString());
@@ -119,9 +119,11 @@ export const VideoGenerator: React.FC = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 space-y-6">
-        <div className="bg-slate-900 rounded-lg p-6 border border-slate-800 animate-fade-in">
-          <h2 className="text-xl font-semibold mb-4 text-white flex items-center">
-            <Eye className="h-5 w-5 mr-2 text-primary" />
+        <div className="glass-card rounded-softer p-6 float-3d animate-fade-in">
+          <h2 className="text-xl font-semibold mb-4 text-slate-700 flex items-center">
+            <div className="p-1.5 rounded-lg bg-gradient-button mr-2 shadow-glow-primary">
+              <Eye className="h-4 w-4 text-white" />
+            </div>
             Preview
           </h2>
           <VideoPreview
@@ -150,7 +152,7 @@ export const VideoGenerator: React.FC = () => {
           <button
             onClick={handleVideoGenerate}
             disabled={!state.audioFile || !state.backgroundImage || !state.lyrics}
-            className="px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="btn-gradient px-8 py-4 rounded-xl text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
           >
             Generate Lyrics Video
           </button>

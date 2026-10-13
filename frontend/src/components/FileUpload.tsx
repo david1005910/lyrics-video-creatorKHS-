@@ -46,7 +46,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     if (type === 'image') {
       const objectUrl = URL.createObjectURL(file);
       return (
-        <div className="relative w-full h-32 overflow-hidden rounded-md">
+        <div className="relative w-full h-32 overflow-hidden rounded-xl">
           <img
             src={objectUrl}
             alt="Preview"
@@ -63,7 +63,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         <div className="w-full">
           <audio
             controls
-            className="w-full"
+            className="w-full rounded-lg"
             onLoad={() => URL.revokeObjectURL(objectUrl)}
           >
             <source src={objectUrl} />
@@ -79,11 +79,11 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   const getIcon = () => {
     switch (type) {
       case 'audio':
-        return <Music className="h-12 w-12 text-slate-400" />;
+        return <Music className="h-12 w-12 text-secondary" />;
       case 'image':
-        return <Image className="h-12 w-12 text-slate-400" />;
+        return <Image className="h-12 w-12 text-accent" />;
       default:
-        return <File className="h-12 w-12 text-slate-400" />;
+        return <File className="h-12 w-12 text-primary" />;
     }
   };
 
@@ -100,15 +100,15 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
   return (
     <div className="animate-fade-in">
-      <div className="mb-2 text-lg font-medium text-white">{getTitle()}</div>
+      <div className="mb-2 text-lg font-medium text-slate-700">{getTitle()}</div>
       <div
         {...getRootProps()}
-        className={`border-2 border-dashed rounded-lg p-4 transition-colors cursor-pointer
+        className={`glass-card rounded-softer p-4 transition-all duration-300 cursor-pointer float-3d
           ${isDragActive
-            ? 'border-primary bg-primary-50 bg-opacity-5'
-            : 'border-slate-700 hover:border-primary-300 bg-slate-800/50'
+            ? 'shadow-glow-primary border-primary'
+            : 'hover:shadow-soft-lg'
           }
-          ${file ? 'border-slate-600' : ''}
+          ${file ? 'border-accent/30' : ''}
         `}
       >
         <input {...getInputProps()} />
@@ -117,28 +117,30 @@ export const FileUpload: React.FC<FileUploadProps> = ({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                {type === 'audio' && <Music className="h-5 w-5 text-primary" />}
-                {type === 'image' && <Image className="h-5 w-5 text-primary" />}
-                <span className="text-sm font-medium truncate max-w-[200px]">
+                {type === 'audio' && <Music className="h-5 w-5 text-secondary" />}
+                {type === 'image' && <Image className="h-5 w-5 text-accent" />}
+                <span className="text-sm font-medium text-slate-700 truncate max-w-[200px]">
                   {file.name}
                 </span>
               </div>
               <button
                 onClick={handleClearFile}
-                className="p-1 rounded-full hover:bg-slate-700 transition-colors"
+                className="p-1.5 rounded-full glass-card hover:shadow-glow-secondary transition-all duration-300"
               >
-                <X className="h-4 w-4 text-slate-400" />
+                <X className="h-4 w-4 text-slate-500" />
               </button>
             </div>
             {getFilePreview()}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-6 text-center">
-            {getIcon()}
-            <p className="mt-2 text-xs font-medium text-slate-300">
+          <div className="flex flex-col items-center justify-center py-8 text-center">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-white/80 to-white/40 shadow-soft mb-4">
+              {getIcon()}
+            </div>
+            <p className="text-sm font-medium text-slate-600">
               Drag & drop {type === 'audio' ? 'an audio file' : 'an image'}, or click to select
             </p>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-slate-400">
               {type === 'audio' ? 'MP3, WAV, OGG, M4A' : 'JPG, PNG, GIF, WEBP'}
             </p>
           </div>
